@@ -1,0 +1,60 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.QoreNext-IT/QoreNextMCP",
+  "description": "Company verification, hierarchy analysis, trade screening and sanctions compliance via MCP",
+  "version": "1.0.0",
+  "repository": {
+    "url": "https://github.com/QoreNext-IT/QoreNextMCP",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "http",
+      "url": "https://mcp.qorenext.com/mcp",
+      "headers": {
+        "X-API-Key": "${QORNEXT_API_KEY}",
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+    }
+  ],
+  "environmentVariables": [
+    {
+      "name": "QORNEXT_API_KEY",
+      "description": "Your QornextMCP API key. Get one at https://qorenext-app.azurewebsites.net/signup",
+      "isRequired": true,
+      "isSecret": true,
+      "format": "string"
+    }
+  ],
+  "tools": [
+    {
+      "name": "health_check",
+      "description": "Verify MCP server is operational and get version info. No authentication required."
+    },
+    {
+      "name": "submit_entities",
+      "description": "Submit companies or organizations for verification and hierarchy analysis."
+    },
+    {
+      "name": "submit_company_for_screening",
+      "description": "Submit a company for trade screening and compliance/sanctions checking."
+    },
+    {
+      "name": "get_request_status",
+      "description": "Get status and results of a screening request. Returns PENDING, PROCESSING, COMPLETE or FAILED."
+    }
+  ],
+  "categories": [
+    "compliance",
+    "screening",
+    "verification",
+    "sanctions",
+    "trade"
+  ],
+  "license": "MIT",
+  "contact": {
+    "email": "support@qorenext.com",
+    "url": "https://qorenext.com"
+  }
+}
