@@ -1,0 +1,2 @@
+# QoreNextMCP
+QoreNext MCP Server.
