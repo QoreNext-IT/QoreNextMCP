@@ -1,8 +1,8 @@
-# QornextMCP
+# QorenextMCP
 
-> Company verification, hierarchy analysis, trade screening and sanctions compliance — via MCP
+> Company hierarchy analysis and address verification — via MCP
 
-QornextMCP is a [Model Context Protocol](https://modelcontextprotocol.io) server that lets Claude and other AI clients perform company verification, organizational hierarchy analysis, and trade/sanctions screening directly in chat.
+QorenextMCP is a [Model Context Protocol](https://modelcontextprotocol.io) server that enables Claude and other AI clients to perform company hierarchy analysis and address verification directly in chat.
 
 ---
 
@@ -63,8 +63,7 @@ Add to `.cursor/mcp.json` or `.windsurf/mcp.json`:
 | Tool | Auth | Description |
 |---|---|---|
 | `health_check` | ❌ Public | Verify server is running, get version info |
-| `submit_entities` | ✅ API Key | Submit companies for verification or hierarchy analysis |
-| `submit_company_for_screening` | ✅ API Key | Submit company for trade screening and sanctions check |
+| `submit_entities` | ✅ API Key | Submit companies for address verification or hierarchy creation |
 | `get_request_status` | ✅ API Key | Poll status and retrieve results of any screening request |
 
 ---
@@ -72,37 +71,22 @@ Add to `.cursor/mcp.json` or `.windsurf/mcp.json`:
 ### `health_check`
 Verify the server is running. No API key required.
 ```
-check if QornextMCP is running
+check if QorenextMCP is running
 ```
 
 ---
 
 ### `submit_entities`
-Submit companies for Hierarchy or Verification screening.
+Submit companies for Hierarchy creation or Address verification.
 
-**Required per entity:** `entityName`, `country`, `screeningType` (`"Hierarchy"` or `"Verification"`)
+**Required per entity:** `entityName`, `country`, `address`, `screeningType` (`"Hierarchy"` or `"Address verification"`)
 
-**Optional:** `crmid`, `address1`, `city`, `stateProvince`, `postalCode`, `website`
-
-```
-submit Acme Corp from USA for Hierarchy screening
-submit Apple Inc (USA) and Samsung (South Korea) for Verification
-```
-
----
-
-### `submit_company_for_screening`
-Submit a company for trade and sanctions compliance screening.
-
-**Required:** `assembly_line_id`, `subscription_id`, `company_name`, `reference_number`
-
-**Optional:** `english_name`, `address`, `website`, `departments`, `labs`,
-`professors`, `products`, `end_use`, `parent_entity`, `parent_country`,
-`priority_level` (`low`/`normal`/`high`/`urgent`), `is_university`
+**Optional:** `crmid`, `website`
 
 ```
-screen Huawei Technologies, assembly line AL-001,
-subscription SUB-123, reference REF-2026-001, priority high
+submit Acme Corp from USA for Hierarchy creation
+submit Apple Inc from USA at 1 Apple Park Way, Cupertino for Address verification
+submit Samsung from South Korea at Samsung Tower, Seoul for Address verification
 ```
 
 ---
@@ -124,7 +108,7 @@ check if screening 5042 is complete
 ## Example workflow
 
 ```
-You:    Submit Acme Corp from USA for Hierarchy screening
+You:    Submit Acme Corp from USA for Hierarchy creation.
 
 Claude: [calls submit_entities]
         ✅ Submitted. Entity ID: 1042
@@ -134,7 +118,6 @@ You:    Get status of request 1042
 Claude: [calls get_request_status]
         Status: COMPLETE
         Hierarchy: Acme Corp → Acme Holdings (USA) → GlobalCorp (UK)
-        Sanctions: Not flagged (OFAC, EU, UN checked) ✅
 ```
 
 ---
