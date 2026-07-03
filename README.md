@@ -8,7 +8,7 @@ QorenextMCP is a [Model Context Protocol](https://modelcontextprotocol.io) serve
 
 ## Get your API key
 
-Sign up at **https://qorenext-app.azurewebsites.net/signup** to get your `QORNEXT_API_KEY`.
+Sign up at **https://qorenext-app.azurewebsites.net/signup** to get your `QORENEXT_API_KEY`.
 
 ---
 
@@ -16,7 +16,7 @@ Sign up at **https://qorenext-app.azurewebsites.net/signup** to get your `QORNEX
 
 ### Claude Code
 ```bash
-claude mcp add --transport http qornext-mcp \
+claude mcp add --transport http qorenext-mcp \
   "https://mcp.qorenext.com/mcp" \
   --header "X-API-Key: YOUR_API_KEY"
 ```
@@ -28,7 +28,7 @@ or `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac):
 ```json
 {
   "mcpServers": {
-    "qornext-mcp": {
+    "qorenext-mcp": {
       "url": "https://mcp.qorenext.com/mcp",
       "headers": {
         "X-API-Key": "YOUR_API_KEY",
@@ -46,7 +46,7 @@ Add to `.cursor/mcp.json` or `.windsurf/mcp.json`:
 ```json
 {
   "mcpServers": {
-    "qornext-mcp": {
+    "qorenext-mcp": {
       "url": "https://mcp.qorenext.com/mcp",
       "headers": {
         "X-API-Key": "YOUR_API_KEY"
@@ -126,7 +126,7 @@ Claude: [calls get_request_status]
 
 - Issues: https://github.com/QoreNext-IT/QoreNextMCP/issues
 - Email: support@qorenext.com
-- Docs: https://qorenext.com/docs
+- Docs: https://qorenext.com
 
 ---
 
