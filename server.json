@@ -1,6 +1,6 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.qorenext-IT/qorenextMCP",
+  "name": "io.github.QoreNext-IT/qorenext-mcp",
   "description": "Company hierarchy analysis and address verification via MCP",
   "version": "1.0.0",
   "repository": {
@@ -11,11 +11,20 @@
     {
       "type": "http",
       "url": "https://mcp.qorenext.com/mcp",
-      "headers": {
-        "X-API-Key": "${qorenext_API_KEY}",
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      }
+      "headers": [
+        {
+          "name": "X-API-Key",
+          "value": "${qorenext_API_KEY}"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Accept",
+          "value": "application/json"
+        }
+      ]
     }
   ],
   "environmentVariables": [
