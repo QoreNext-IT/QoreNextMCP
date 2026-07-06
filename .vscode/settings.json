@@ -1,9 +1,3 @@
 {
-  "json.schemaStore.enable": true,
-  "json.schemas": [
-    {
-      "fileMatch": ["server.json"],
-      "url": "https://modelcontextprotocol.io/schemas/server.schema.json"
-    }
-  ]
+  "json.validate.enable": false
 }
