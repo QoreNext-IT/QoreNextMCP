@@ -1,5 +1,5 @@
 {
-  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "$schema": "https://modelcontextprotocol.io/schemas/server.schema.json",
   "name": "io.github.QoreNext-IT/qorenext-mcp",
   "description": "Company hierarchy analysis and address verification via MCP",
   "version": "1.0.0",
