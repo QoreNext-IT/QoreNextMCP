@@ -9,7 +9,7 @@
   },
   "remotes": [
     {
-      "type": "http",
+      "type": "streamable-http",
       "url": "https://mcp.qorenext.com/mcp",
       "headers": [
         {
