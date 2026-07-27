@@ -46,6 +46,10 @@
       "description": "Submit companies for address verification or hierarchy creation."
     },
     {
+      "name": "submit_duplicates",
+      "description": "Submit duplicate entities from JSON, CSV, or Excel files for detection and merging."
+    },
+    {
       "name": "get_request_status",
       "description": "Get status and results of a screening request. Returns PENDING, PROCESSING, COMPLETE or FAILED with detailed results."
     }

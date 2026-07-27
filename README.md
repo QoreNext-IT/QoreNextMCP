@@ -64,6 +64,7 @@ Add to `.cursor/mcp.json` or `.windsurf/mcp.json`:
 |---|---|---|
 | `health_check` | ❌ Public | Verify server is running, get version info |
 | `submit_entities` | ✅ API Key | Submit companies for address verification or hierarchy creation |
+| `submit_duplicates` | ✅ API Key | Submit duplicate entities from JSON, CSV, or Excel files |
 | `get_request_status` | ✅ API Key | Poll status and retrieve results of any screening request |
 
 ---
@@ -87,6 +88,101 @@ Submit companies for Hierarchy creation or Address verification.
 submit Acme Corp from USA for Hierarchy creation
 submit Apple Inc from USA at 1 Apple Park Way, Cupertino for Address verification
 submit Samsung from South Korea at Samsung Tower, Seoul for Address verification
+```
+
+---
+
+### `submit_duplicates`
+Submit duplicate account records from files (JSON, CSV, or Excel) for deduplication detection.
+
+**Required:** `file_content`, `file_type`
+
+**Optional:** `file_name`
+
+**Supported File Types:**
+- `json` - JSON array format
+- `csv` - Comma-separated values with headers
+- `excel` or `xlsx` - Microsoft Excel workbooks
+
+**Required Fields (per record):**
+- `crmAccountId` - Account identifier
+- `crmAccountName` - Account/Company name  
+- `country` - Country name
+
+**Optional Fields:**
+- `addressLine1` - Street address
+- `addressLine2` - Suite, apt, unit, etc.
+- `city` - City name
+- `stateProvince` - State or Province
+- `postalCode` - ZIP/Postal code
+- `website` - Website URL
+
+**File Format Requirements:**
+
+**JSON Array:**
+```json
+[
+  {
+    "crmAccountId": "CRM-00001",
+    "crmAccountName": "Acme Technologies",
+    "addressLine1": "123 Main Street",
+    "addressLine2": "Suite 100",
+    "city": "New York",
+    "stateProvince": "NY",
+    "country": "United States",
+    "postalCode": "10001",
+    "website": "www.acmetech.com"
+  },
+  {
+    "crmAccountId": "CRM-00001-B",
+    "crmAccountName": "Acme Tech",
+    "addressLine1": "123 Main St",
+    "city": "New York",
+    "stateProvince": "NY",
+    "country": "United States",
+    "postalCode": "10001"
+  }
+]
+```
+
+**CSV with Headers:**
+```
+crmAccountId,crmAccountName,addressLine1,city,stateProvince,country,postalCode,website
+CRM-00001,Acme Technologies,123 Main Street,New York,NY,United States,10001,www.acmetech.com
+CRM-00002,Blue Ridge Software,456 Oak Avenue,Los Angeles,CA,United States,90001,www.blueridgesoftware.com
+```
+
+**Excel Workbook:**
+- First row: Column headers
+- Data rows: Account records
+- Supports any of the field names listed above
+
+**Examples:**
+```
+submit deduplication for CSV file with 50 company records
+detect duplicates from Excel file of CRM accounts
+process JSON file to find similar companies
+```
+
+**Returns:**
+- `data`: Number of duplicate pairs detected
+- `message`: Description of results
+- `details`: Record count and duplicate pair count
+
+**Example Response (Status 200):**
+```json
+{
+  "success": true,
+  "status_code": 200,
+  "data": 66,
+  "message": "Successfully detected 66 duplicate pairs from 8 records",
+  "details": {
+    "records_submitted": 8,
+    "duplicate_pairs_found": 66,
+    "file_name": "accounts.csv",
+    "file_type": "csv"
+  }
+}
 ```
 
 ---
