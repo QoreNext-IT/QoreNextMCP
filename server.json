@@ -47,7 +47,7 @@
     },
     {
       "name": "submit_duplicates",
-      "description": "Submit duplicate entities from JSON, CSV, or Excel files for detection and merging."
+      "description": "Submit duplicate entities from JSON, CSV, or Excel files for detection and merging. Required fields: crmAccountId, crmAccountName, addressLine1, country."
     },
     {
       "name": "get_request_status",
@@ -57,7 +57,8 @@
   "categories": [
     "verification",
     "hierarchy",
-    "company-data"
+    "company-data",
+    "deduplication"
   ],
   "license": "MIT",
   "contact": {

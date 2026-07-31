@@ -104,13 +104,13 @@ Submit duplicate account records from files (JSON, CSV, or Excel) for deduplicat
 - `csv` - Comma-separated values with headers
 - `excel` or `xlsx` - Microsoft Excel workbooks
 
-**Required Fields (per record):**
+**Required Fields (per record in CSV and Excel files):**
 - `crmAccountId` - Account identifier
 - `crmAccountName` - Account/Company name  
+- `addressLine1` - Street address
 - `country` - Country name
 
 **Optional Fields:**
-- `addressLine1` - Street address
 - `addressLine2` - Suite, apt, unit, etc.
 - `city` - City name
 - `stateProvince` - State or Province
@@ -134,13 +134,10 @@ Submit duplicate account records from files (JSON, CSV, or Excel) for deduplicat
     "website": "www.acmetech.com"
   },
   {
-    "crmAccountId": "CRM-00001-B",
-    "crmAccountName": "Acme Tech",
-    "addressLine1": "123 Main St",
-    "city": "New York",
-    "stateProvince": "NY",
-    "country": "United States",
-    "postalCode": "10001"
+    "crmAccountId": "CRM-00002",
+    "crmAccountName": "Blue Ridge Software",
+    "addressLine1": "456 Oak Avenue",
+    "country": "United States"
   }
 ]
 ```
@@ -155,7 +152,8 @@ CRM-00002,Blue Ridge Software,456 Oak Avenue,Los Angeles,CA,United States,90001,
 **Excel Workbook:**
 - First row: Column headers
 - Data rows: Account records
-- Supports any of the field names listed above
+- Required columns: crmAccountId, crmAccountName, addressLine1, country
+- Optional columns: addressLine2, city, stateProvince, postalCode, website
 
 **Examples:**
 ```
