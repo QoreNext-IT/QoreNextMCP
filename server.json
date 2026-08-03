@@ -42,8 +42,12 @@
       "description": "Verify MCP server is operational and get version info. No authentication required."
     },
     {
-      "name": "submit_entities",
-      "description": "Submit companies for address verification or hierarchy creation."
+      "name": "submit_address_verification",
+      "description": "Submit companies for address verification. Validate company addresses and verify organization legitimacy. Required fields: companyName, country, address."
+    },
+    {
+      "name": "submit_hierarchy_creation",
+      "description": "Submit companies for organizational hierarchy creation. Identify parent-subsidiary relationships and organizational structure. Required fields: companyName, country."
     },
     {
       "name": "submit_duplicates",

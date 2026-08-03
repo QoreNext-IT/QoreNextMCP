@@ -63,7 +63,8 @@ Add to `.cursor/mcp.json` or `.windsurf/mcp.json`:
 | Tool | Auth | Description |
 |---|---|---|
 | `health_check` | ❌ Public | Verify server is running, get version info |
-| `submit_entities` | ✅ API Key | Submit companies for address verification or hierarchy creation |
+| `submit_address_verification` | ✅ API Key | Submit companies for address verification and validation |
+| `submit_hierarchy_creation` | ✅ API Key | Submit companies for organizational hierarchy analysis |
 | `submit_duplicates` | ✅ API Key | Submit duplicate entities from JSON, CSV, or Excel files |
 | `get_request_status` | ✅ API Key | Poll status and retrieve results of any screening request |
 
@@ -77,17 +78,32 @@ check if QorenextMCP is running
 
 ---
 
-### `submit_entities`
-Submit companies for Hierarchy creation or Address verification.
+### `submit_address_verification`
+Submit companies for address verification and legitimacy validation.
 
-**Required per entity:** `entityName`, `country`, `address`, `screeningType` (`"Hierarchy"` or `"Address verification"`)
+**Required per entity:** `companyName`, `country`, `address`
 
 **Optional:** `crmid`, `website`
 
 ```
-submit Acme Corp from USA for Hierarchy creation
-submit Apple Inc from USA at 1 Apple Park Way, Cupertino for Address verification
-submit Samsung from South Korea at Samsung Tower, Seoul for Address verification
+verify Acme Corp at 123 Main Street, New York, USA
+validate Apple Inc at 1 Apple Park Way, Cupertino, USA
+check Samsung at Samsung Tower, Seoul, South Korea
+```
+
+---
+
+### `submit_hierarchy_creation`
+Submit companies for organizational hierarchy analysis to identify parent-subsidiary relationships.
+
+**Required per entity:** `companyName`, `country`
+
+**Optional:** `crmid`, `address`, `website`
+
+```
+create hierarchy for Acme Corp from USA
+analyze organizational structure for Apple Inc from USA
+map corporate relationships for Samsung from South Korea
 ```
 
 ---
@@ -201,13 +217,29 @@ check if screening 5042 is complete
 
 ## Example workflow
 
+**Address Verification:**
 ```
-You:    Submit Acme Corp from USA for Hierarchy creation.
+You:    Verify Apple Inc at 1 Apple Park Way, Cupertino, USA.
 
-Claude: [calls submit_entities]
+Claude: [calls submit_address_verification]
         ✅ Submitted. Entity ID: 1042
 
 You:    Get status of request 1042
+
+Claude: [calls get_request_status]
+        Status: COMPLETE
+        Address Verified: ✅ Yes
+        Business Status: ACTIVE
+```
+
+**Hierarchy Creation:**
+```
+You:    Create hierarchy for Acme Corp from USA.
+
+Claude: [calls submit_hierarchy_creation]
+        ✅ Submitted. Entity ID: 1043
+
+You:    Get status of request 1043
 
 Claude: [calls get_request_status]
         Status: COMPLETE
